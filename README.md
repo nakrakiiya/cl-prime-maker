@@ -21,7 +21,7 @@ To load "cl-prime-maker":
 
 * [cl-prime-maker:make-prime]
  cl-prime-maker:make-prime
- Generates a random prime P with at least K decimal digits. Returns nil when k <= 0. Returns NIL otherwise. 
+ Generates a random prime P with at least K decimal digits. Returns nil when k <= 0. Returns NIL otherwise. K should be an INTEGER. 
 
 ```cl
 CL-USER> (cl-prime-maker:make-prime 10)

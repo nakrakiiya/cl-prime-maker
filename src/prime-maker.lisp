@@ -71,7 +71,7 @@
     (primep/3 ntests d n)))
 
 (defun primep (n)
-  "Tests if N is a prime number "
+  "Tests if N is a prime number. Returns T if N is a prime number. Returns NIL otherwise. "
   (new-seed)
   (primep/2 n 100))
 
@@ -84,7 +84,8 @@
           (make-prime/2 (1- k) (1+ p)))))
 
 (defun make-prime (k)
-  "Generates a random prime P with at least K decimal digits. "
+  "Generates a random prime P with at least K decimal digits. Returns nil when k <= 0. Returns NIL otherwise. K should be an INTEGER. "
+  (declare (type integer k))
   (when (> k 0)
     (new-seed)
     (let ((n (make k)))
