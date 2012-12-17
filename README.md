@@ -10,7 +10,7 @@ Translated from the erlang version: http://www.oschina.net/code/snippet_222150_8
 
 ##Usage##
 
-* Load the library
+###Load the library###
 
 ```cl
 CL-USER> (ql:quickload "cl-prime-maker")
@@ -19,11 +19,8 @@ To load "cl-prime-maker":
     cl-prime-maker
 ```
 
-* [cl-prime-maker:make-prime]
- 
- cl-prime-maker:make-prime
- 
- Generates a random prime P with at least K decimal digits. Returns nil when k <= 0. Returns NIL otherwise. K should be an INTEGER. 
+###Function: cl-prime-maker:make-prime###
+Generates a random prime P with at least K decimal digits. Returns nil when k <= 0. Returns NIL otherwise. K should be an INTEGER. 
 
 ```cl
 CL-USER> (cl-prime-maker:make-prime 10)
@@ -44,9 +41,8 @@ During that period, and with 2 available CPU cores,
 5699885229276577728495724707769425629156908217502336077240701491905327286488809030648850373069454909
 ```
 
-* [cl-prime-maker:primep]
- 
- Tests if N is a prime number. Returns T if N is a prime number. Returns NIL otherwise. 
+###Function: cl-prime-maker:primep###
+Tests if N is a prime number. Returns T if N is a prime number. Returns NIL otherwise. 
 
 ```cl
 CL-USER> (time (cl-prime-maker:primep 5699885229276577728495724707769425629156908217502336077240701491905327286488809030648850373069454909))
