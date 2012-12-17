@@ -20,7 +20,9 @@ To load "cl-prime-maker":
 ```
 
 * [cl-prime-maker:make-prime]
+ 
  cl-prime-maker:make-prime
+ 
  Generates a random prime P with at least K decimal digits. Returns nil when k <= 0. Returns NIL otherwise. K should be an INTEGER. 
 
 ```cl
@@ -43,6 +45,7 @@ During that period, and with 2 available CPU cores,
 ```
 
 * [cl-prime-maker:primep]
+ 
  Tests if N is a prime number. Returns T if N is a prime number. Returns NIL otherwise. 
 
 ```cl
