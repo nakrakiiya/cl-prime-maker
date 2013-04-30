@@ -44,6 +44,10 @@ During that period, and with 2 available CPU cores,
 ###Function: cl-prime-maker:primep###
 Tests if N is a prime number. Returns T if N is a prime number. Returns NIL otherwise. 
 
+**NOTES**
+* If n <= 65535, the detection of whether a number is prime can always get the correct answer.
+* If n > 65535, the detection of whether a number is prime is based on the Fermat's little theorem.
+
 ```cl
 CL-USER> (time (cl-prime-maker:primep 5699885229276577728495724707769425629156908217502336077240701491905327286488809030648850373069454909))
 (CL-PRIME-MAKER:PRIMEP 5699885229276577728495724707769425629156908217502336077240701491905327286488809030648850373069454909)
