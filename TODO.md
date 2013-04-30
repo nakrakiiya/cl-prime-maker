@@ -2,6 +2,6 @@
 * As of 1997, this procedure is known to be correct only for n<10^16, and it is conceivable that for larger n it could claim a composite number to be prime. 
 
 Use the same way as Mathematica does to detect the numbers.
-[ ] Tests for divisibility using small primes.
-[ ] Implements Miller-Rabin strong pseudoprime test.
-[ ] Implements Lucas test.
+- [ ] Tests for divisibility using small primes.
+- [ ] Implements Miller-Rabin strong pseudoprime test.
+- [ ] Implements Lucas test.
