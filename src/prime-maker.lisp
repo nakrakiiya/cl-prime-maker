@@ -98,6 +98,7 @@ NOTES:
 * If n <= 65535, the detection of whether a number is prime can always get the correct answer.
 * If n > 65535, the detection of whether a number is prime is based on the Fermat's little theorem.
 "
+  (declare (type integer n))
   (if (<= n 1)
       nil
       (if (<= n 65535)
