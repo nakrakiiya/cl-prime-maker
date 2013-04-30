@@ -5,6 +5,28 @@
 
 (declaim (optimize (speed 3)))
 
+;; for small prime numbers
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (defun make-prime-list-for-range (maximum)
+    (let ((result-array (make-array (list (1+ maximum)) :initial-element t)))
+      ;; init for 0, 1
+      (setf (aref result-array 0) nil)
+      (setf (aref result-array 1) nil)
+      ;; process the rest
+      (loop
+         for base-num from 2 below (1+ (/ maximum 2))
+         do
+           (let ((n (* base-num 2)))
+             (loop
+                (if (<= n maximum)
+                    (progn
+                      (setf (aref result-array n) nil)
+                      (incf n base-num))
+                    (return)))))
+      result-array)))
+
+(defconstant +primes-below-65535+ #.(make-prime-list-for-range 65535))
+
 (defun pow (a b m)
   "Computes V = (A^B) mod M. It's much faster than (mod (expt a b) m)."
   (cond
@@ -71,9 +93,17 @@
     (primep/3 ntests d n)))
 
 (defun primep (n)
-  "Tests if N is a prime number. Returns T if N is a prime number. Returns NIL otherwise. "
-  (new-seed)
-  (primep/2 n 100))
+  "Tests if N is a prime number. Returns T if N is a prime number. Returns NIL otherwise.
+NOTES:
+* If n <= 65535, the detection of whether a number is prime can always get the correct answer.
+* If n > 65535, the detection of whether a number is prime is based on the Fermat's little theorem.
+"
+  (if (<= n 1)
+      nil
+      (if (<= n 65535)
+          (aref +primes-below-65535+ n)
+          (progn (new-seed)
+                 (primep/2 n 100)))))
 
 (declaim (inline make-prime/2))
 (defun make-prime/2 (k p)
