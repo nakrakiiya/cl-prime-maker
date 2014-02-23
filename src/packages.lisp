@@ -5,4 +5,5 @@
   (:use :cl)
   (:export
    #:make-prime
-   #:primep))
+   #:primep
+   #:generate-nth-prime))
