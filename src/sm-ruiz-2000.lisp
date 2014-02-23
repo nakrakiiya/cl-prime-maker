@@ -3,6 +3,8 @@
 
 (in-package :cl-prime-maker)
 
+(declaim (optimize (speed 3)))
+
 (defvar *ruiz-pis* (make-hash-table))   ; cache pi(k)
 (defvar *ruiz-pis-part1* (make-hash-table)) ; cache a sub-part of pi(k)
 
