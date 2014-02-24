@@ -7,6 +7,7 @@
 
 (defvar *ruiz-pis* (make-hash-table))   ; cache pi(k)
 (defvar *ruiz-pis-part1* (make-hash-table)) ; cache a sub-part of pi(k)
+(defvar *ruiz-results* (make-hash-table))   ; cache the results of p(n)
 
 (defun compute-ruiz-pis-part1 (j)
   (let ((result-from-hash (gethash j *ruiz-pis-part1*)))
@@ -41,10 +42,16 @@
   (declare (type integer n))
   "Generate the Nth prime number when N >= 1. Otherwise this function always returns 2."
   (if (>= n 1)
-      (1+ (loop
-             for k from 1 to (* 2 (1+ (floor (* n (log n)))))
-             summing (- 1 (floor (/ (compute-ruiz-pi k)
-                                    n)))))
+      (let ((result-from-hash (gethash n *ruiz-results*)))
+        (if (null result-from-hash)
+            (let ((result (1+ (loop
+                                 for k from 1 to (* 2 (1+ (floor (* n (log n)))))
+                                 summing (- 1 (floor (/ (compute-ruiz-pi k)
+                                                        n)))))))
+              (setf (gethash n *ruiz-results*) result)
+              result)
+            result-from-hash))
+      
       2))
            
 
