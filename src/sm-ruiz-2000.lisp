@@ -38,7 +38,7 @@
           result)
         result-from-hash)))
 
-(defun generate-nth-prime (n)
+(defun get-nth-prime (n)
   (declare (type integer n))
   "Generate the Nth prime number when N >= 1. Otherwise this function always returns 2."
   (if (>= n 1)

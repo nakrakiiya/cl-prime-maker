@@ -69,14 +69,14 @@ NIL
 
 ```
 
-###Function: cl-prime-maker:generate-nth-prime###
+###Function: cl-prime-maker:get-nth-prime###
 Generate the Nth prime number when N >= 1. Otherwise, this function always returns 2.
 
 **NOTES**
 * This function will cache some intermediate results to speed up the computation.
 
 ```cl
-CL-USER> (loop for i from 1 to 10 do (print (cl-prime-maker:generate-nth-prime i)))
+CL-USER> (loop for i from 1 to 10 do (print (cl-prime-maker:get-nth-prime i)))
 2 
 3 
 5 
@@ -88,23 +88,21 @@ CL-USER> (loop for i from 1 to 10 do (print (cl-prime-maker:generate-nth-prime i
 23 
 29 
 NIL
-CL-USER> (time (cl-prime-maker:generate-nth-prime 4000))
-(CL-PRIME-MAKER:GENERATE-NTH-PRIME 4000)
-took 9,546,597 microseconds (9.546597 seconds) to run.
-       416,601 microseconds (0.416601 seconds, 4.36%) of which was spent in GC.
+CL-USER> (time (cl-prime-maker:get-nth-prime 4000))
+(CL-PRIME-MAKER:GET-NTH-PRIME 4000)
+took 9,435,975 microseconds (9.435975 seconds) to run.
+       422,584 microseconds (0.422584 seconds, 4.48%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     9,525,738 microseconds (9.525738 seconds) were spent in user mode
-        88,292 microseconds (0.088292 seconds) were spent in system mode
- 1,428,897,312 bytes of memory allocated.
- 1,267 minor page faults, 0 major page faults, 0 swaps.
+     9,420,502 microseconds (9.420502 seconds) were spent in user mode
+       100,228 microseconds (0.100228 seconds) were spent in system mode
+ 1,428,879,264 bytes of memory allocated.
+ 1,194 minor page faults, 0 major page faults, 0 swaps.
 37813
-CL-USER> (time (cl-prime-maker:generate-nth-prime 4000))
-(CL-PRIME-MAKER:GENERATE-NTH-PRIME 4000)
-took 41,733 microseconds (0.041733 seconds) to run.
-      1,448 microseconds (0.001448 seconds, 3.47%) of which was spent in GC.
+CL-USER> (time (cl-prime-maker:get-nth-prime 4000))
+(CL-PRIME-MAKER:GET-NTH-PRIME 4000)
+took 16 microseconds (0.000016 seconds) to run.
 During that period, and with 4 available CPU cores,
-     38,266 microseconds (0.038266 seconds) were spent in user mode
-         21 microseconds (0.000021 seconds) were spent in system mode
- 4,245,440 bytes of memory allocated.
+      0 microseconds (0.000000 seconds) were spent in user mode
+      0 microseconds (0.000000 seconds) were spent in system mode
 37813
 ```

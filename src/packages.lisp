@@ -6,4 +6,4 @@
   (:export
    #:make-prime
    #:primep
-   #:generate-nth-prime))
+   #:get-nth-prime))
