@@ -8,13 +8,14 @@
 ;; for small prime numbers
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (defun make-prime-list-for-range (maximum)
+    (declare (type fixnum maximum))
     (let ((result-array (make-array (list (1+ maximum)) :initial-element t)))
       ;; init for 0, 1
       (setf (aref result-array 0) nil)
       (setf (aref result-array 1) nil)
       ;; process the rest
       (loop
-         for base-num from 2 below (1+ (/ maximum 2))
+         for base-num from 2 below (1+ (floor maximum 2))
          do
            (let ((n (* base-num 2)))
              (loop
@@ -27,8 +28,9 @@
 
 (defparameter +primes-below-65535+ #.(make-prime-list-for-range 65535))
 
-(defun pow (a b m)
+(defun pow (a b m)  
   "Computes V = (A^B) mod M. It's much faster than (mod (expt a b) m)."
+  (declare (type integer a b m))
   (cond
     ((= b 1)
      (mod a m))
@@ -46,6 +48,7 @@
 ;; random:uniform
 (declaim (inline random-uniform))
 (defun random-uniform (n)
+  (declare (type integer n))
   (1+ (random n)))
 
 ;; new_seed
@@ -55,6 +58,7 @@
 
 ;(declaim (inline make/2))
 (defun make/2 (n d)
+  (declare (type integer n d))
   (if (= n 0)
       d
       (make/2 (1- n) (+ (* 10 d) (1- (random-uniform 10))))))
@@ -77,6 +81,7 @@
 
 ;(declaim (inline primep/2 primep/3))
 (defun primep/3 (ntest n len)
+  (declare (type integer ntest n len))
   (if (= ntest 0)
       t
       (let* ((k (random-uniform len))
@@ -89,6 +94,7 @@
             (primep/3 ntest n len)))))
 
 (defun primep/2 (d ntests)
+  (declare (type integer d ntests))
   (let ((n (1- (length (write-to-string d)))))
     (primep/3 ntests d n)))
 
