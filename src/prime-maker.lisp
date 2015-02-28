@@ -25,7 +25,7 @@
                     (return)))))
       result-array)))
 
-(defconstant +primes-below-65535+ #.(make-prime-list-for-range 65535))
+(defparameter +primes-below-65535+ #.(make-prime-list-for-range 65535))
 
 (defun pow (a b m)
   "Computes V = (A^B) mod M. It's much faster than (mod (expt a b) m)."
