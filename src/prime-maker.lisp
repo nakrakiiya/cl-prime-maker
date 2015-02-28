@@ -53,7 +53,7 @@
 (defun new-seed ()
   (setq *random-state* (make-random-state t)))
 
-(declaim (inline make/2))
+;(declaim (inline make/2))
 (defun make/2 (n d)
   (if (= n 0)
       d
@@ -75,7 +75,7 @@
 ;; is approximately 2^-100. So we can be fairly sure that the classification
 ;; is correct.
 
-(declaim (inline primep/2 primep/3))
+;(declaim (inline primep/2 primep/3))
 (defun primep/3 (ntest n len)
   (if (= ntest 0)
       t
@@ -106,7 +106,7 @@ NOTES:
           (progn (new-seed)
                  (primep/2 n 100)))))
 
-(declaim (inline make-prime/2))
+;(declaim (inline make-prime/2))
 (defun make-prime/2 (k p)
   (if (= k 0)
       (error "impossible")
