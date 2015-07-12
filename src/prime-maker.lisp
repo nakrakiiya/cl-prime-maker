@@ -5,6 +5,8 @@
 
 (declaim (optimize (speed 3)))
 
+(defvar *default-prime-maker-base* 10)
+
 ;; for small prime numbers
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (defun make-prime-list-for-range (maximum)
@@ -57,16 +59,16 @@
   (setq *random-state* (make-random-state t)))
 
 ;(declaim (inline make/2))
-(defun make/2 (n d)
+(defun make/2 (n d &optional (base *default-prime-maker-base*))
   (declare (type integer n d))
   (if (= n 0)
       d
-      (make/2 (1- n) (+ (* 10 d) (1- (random-uniform 10))))))
+      (make/2 (1- n) (+ (* base d) (1- (random-uniform base))) base)))
 
-(defun make (n)
+(defun make (n &optional (base *default-prime-maker-base*))
   "make(n) -> I: Generates a random integer I with N decimal digits. "
   (new-seed)
-  (make/2 n 0))
+  (make/2 n 0 base))
 
 ;; Fermat's little theorem states that if N is prime then A^N mod N = A. So
 ;; to test if N is prime we choose some random A which is less than N and
@@ -120,15 +122,15 @@ NOTES:
           p
           (make-prime/2 (1- k) (1+ p)))))
 
-(defun make-prime (k)
+(defun make-prime (k &optional (base *default-prime-maker-base*))
   "Generates a random prime P with at least K decimal digits. Returns nil when k <= 0. Returns NIL otherwise. K should be an INTEGER. "
   (declare (type integer k))
   (when (> k 0)
     (new-seed)
-    (let ((n (make k)))
+    (let ((n (make k base)))
       (if (> n 3)
           (let* ((max-tries (- n 3))
                  (p1 (make-prime/2 max-tries (1+ n))))
             p1)
-          (make-prime k)))))
+          (make-prime k base)))))
 
