@@ -5,7 +5,7 @@
 
 (declaim (optimize (speed 3)))
 
-(defvar *default-prime-generator-base* 10)
+(defvar *default-prime-maker-base* 10)
 
 ;; for small prime numbers
 (eval-when (:compile-toplevel :load-toplevel :execute)
@@ -59,13 +59,13 @@
   (setq *random-state* (make-random-state t)))
 
 ;(declaim (inline make/2))
-(defun make/2 (n d &optional (base *default-prime-generator-base*))
+(defun make/2 (n d &optional (base *default-prime-maker-base*))
   (declare (type integer n d))
   (if (= n 0)
       d
       (make/2 (1- n) (+ (* base d) (1- (random-uniform base))) base)))
 
-(defun make (n &optional (base *default-prime-generator-base*))
+(defun make (n &optional (base *default-prime-maker-base*))
   "make(n) -> I: Generates a random integer I with N decimal digits. "
   (new-seed)
   (make/2 n 0 base))
@@ -122,7 +122,7 @@ NOTES:
           p
           (make-prime/2 (1- k) (1+ p)))))
 
-(defun make-prime (k &optional (base *default-prime-generator-base*))
+(defun make-prime (k &optional (base *default-prime-maker-base*))
   "Generates a random prime P with at least K decimal digits. Returns nil when k <= 0. Returns NIL otherwise. K should be an INTEGER. "
   (declare (type integer k))
   (when (> k 0)
